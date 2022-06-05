@@ -32,42 +32,64 @@ namespace order_module
 		ifstream in;
 		int total;
 		in.open("orders.txt");
-		in >> total;
-		in >> lastID;
-		while (!in.eof() && total-- > 0)
+		if(!in)
 		{
-			Order buf;
-			in >> buf.id;
-			in >> buf.client_id;
-			in >> buf.name;
-			in >> buf.brand;
-			in >> buf.cost;
-			buf.date_recieve.fill(in);
-			buf.date_return.fill(in);
-			in >> buf.status;
-			st.push_back(buf);
+			in.open("orders.txt",std::fstream::binary | std::fstream::trunc | std::fstream::out);    
+			in.close();
+			// re-open with original flags
+			in.open("orders.txt",std::fstream::binary | std::fstream::in | std::fstream::out);
 		}
-		in.close();
+		else
+		{
+			// read something
+			in >> total;
+			in >> lastID;
+			while (!in.eof() && total-- > 0)
+			{
+				Order buf;
+				in >> buf.id;
+				in >> buf.client_id;
+				in >> buf.name;
+				in >> buf.brand;
+				in >> buf.cost;
+				buf.date_recieve.fill(in);
+				buf.date_return.fill(in);
+				in >> buf.status;
+				st.push_back(buf);
+			}
+			in.close();
+		}
 	}
 
 	void SaveToFile(const vector<Order> st, int lastID)
 	{
 		ofstream out;
 		out.open("orders.txt");
-		out << st.size() << endl;
-		out << (lastID == 0 ? st[st.size()].id : lastID) << endl;
-		for (auto order : st)
+		if(!out)
 		{
-			out << order.id << endl
-				<< order.client_id << endl
-				<< order.name << endl
-				<< order.brand << endl
-				<< order.cost << endl
-				<< order.date_recieve.day << " " << order.date_recieve.month << " " << order.date_recieve.year << endl
-				<< order.date_return.day << " " << order.date_return.month << " " << order.date_return.year << endl
-				<< order.status << endl;
+			out.open("orders.txt",std::fstream::binary | std::fstream::trunc | std::fstream::out);    
+			out.close();
+			// re-open with original flags
+			out.open("orders.txt",std::fstream::binary | std::fstream::in | std::fstream::out);
 		}
-		out.close();
+		else
+		{
+
+			out << st.size() << endl;
+			out << (lastID == 0 ? st[st.size()].id : lastID) << endl;
+			for (auto order : st)
+			{
+				out << order.id << endl
+					<< order.client_id << endl
+					<< order.name << endl
+					<< order.brand << endl
+					<< order.cost << endl
+					<< order.date_recieve.day << " " << order.date_recieve.month << " " << order.date_recieve.year << endl
+					<< order.date_return.day << " " << order.date_return.month << " " << order.date_return.year << endl
+					<< order.status << endl;
+			}
+			out.close();
+		}
 	}
 
 	void DisplayAll(const vector<Order> st)

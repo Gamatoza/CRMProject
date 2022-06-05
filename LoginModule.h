@@ -24,7 +24,7 @@ public:
 
 namespace login_module
 {
-	//TODO: check file
+	//TODO: check user file
 	void LoadFromFile(vector<User>& st, int& lastID);
 	void SaveToFile(vector<User> st, int lastID);
 	void DisplayAll(vector<User> st);

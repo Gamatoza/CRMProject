@@ -6,35 +6,57 @@ namespace login_module
 		ifstream in;
 		int total;
 		in.open("users.txt");
-		in >> total;
-		in >> lastID;
-		while (!in.eof() && total-- > 0)
+		if(!in)
 		{
-			User buf;
-			in >> buf.id;
-			in >> buf.login;
-			in >> buf.password;
-			in >> buf.fio;
-			in >> buf.number;
-			int _role;
-			in >> _role;
-			buf.role_type = (ROLE)_role;
-			st.push_back(buf);
+			in.open("users.txt",std::fstream::binary | std::fstream::trunc | std::fstream::out);    
+			in.close();
+			// re-open with original flags
+			in.open("users.txt",std::fstream::binary | std::fstream::in | std::fstream::out);
 		}
-		in.close();
+		else
+		{
+			in >> total;
+			in >> lastID;
+			while (!in.eof() && total-- > 0)
+			{
+				User buf;
+				in >> buf.id;
+				in >> buf.login;
+				in >> buf.password;
+				in >> buf.fio;
+				in >> buf.number;
+				int _role;
+				in >> _role;
+				buf.role_type = (ROLE)_role;
+				st.push_back(buf);
+			}
+			in.close();
+		}
 	}
 
 	void SaveToFile(const vector<User> st, int lastID)
 	{
 		ofstream out;
 		out.open("users.txt");
-		out << st.size() << endl;
-		out << (lastID == 0 ? st[st.size()].id : lastID) << endl;
-		for (auto x : st)
+		if(!out)
 		{
-			out << x.id << endl << x.login << endl << x.password << endl << x.fio << endl << x.number << endl << x.role_type << endl;
+			out.open("users.txt",std::fstream::binary | std::fstream::trunc | std::fstream::out);    
+			out.close();
+			// re-open with original flags
+			out.open("users.txt",std::fstream::binary | std::fstream::in | std::fstream::out);
 		}
-		out.close();
+		else
+		{
+			ofstream out;
+			out.open("users.txt");
+			out << st.size() << endl;
+			out << (lastID == 0 ? st[st.size()].id : lastID) << endl;
+			for (auto x : st)
+			{
+				out << x.id << endl << x.login << endl << x.password << endl << x.fio << endl << x.number << endl << x.role_type << endl;
+			}
+			out.close();
+		}
 	}
 
 	void DisplayAll(const vector<User> st)
