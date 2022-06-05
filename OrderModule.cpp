@@ -51,7 +51,7 @@ namespace orderModule
 		cout << order.ID << " " << order.ClientID << " " << order.Name << " " << order.Brand << " " << order.Cost << " " << order.DateRecieve << " " << order.DateReturn << " " << order.Status << endl;
 	}
 
-	int findOrder(vector<Order> st, int id) 
+	int findById(vector<Order> st, int id) 
 	{
 		for (size_t i = 0; i < st.size(); i++)
 		{
@@ -63,5 +63,7 @@ namespace orderModule
 
 		return -1;
 	}
+
+
 
 }

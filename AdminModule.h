@@ -20,8 +20,5 @@ void delete_user(vector<User>& users, int id); //TODO: get back
 void add_new_order(vector<Order>& orders, int& lastId);
 void change_order(vector<Order>& orders, int id);
 void delete_order(vector<Order>& orders, int id);
-void individual_admin_order(vector<Order> orders);
-void search_admin_order(vector<Order> orders);
-void sort_admin_order(vector<Order> orders);
 
 #pragma endregion

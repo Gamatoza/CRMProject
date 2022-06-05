@@ -7,10 +7,6 @@
 using namespace std;
 
 
-/*
-наименование ремонтируемого изделия (телевизор ит.д.), марка изделия,
-Ф.И.О. владельца, телефон владельца, стоимость ремонта, дата приемки, дата выдачи, статус (выполнен или нет)
-*/
 struct Order
 {
 	int ID;
@@ -25,10 +21,22 @@ struct Order
 
 namespace orderModule
 {
-	//TODO: check file
 	void loadFromFile(vector<Order> &st, int& lastID);
 	void saveToFile(vector<Order> st, int lastID);
 	void displayAll(vector<Order> st);
 	void displayOne(Order st);
-	int findOrder(vector<Order> st, int id);
+
+	void individual(vector<Order> orders, int clientId);
+	void uncomplited(vector<Order> orders);
+	
+	int findById(vector<Order> st, int id);
+	int findByName(vector<Order> st, string name);
+	int findByBrand(vector<Order> st, string brand);
+	int findByDateRecieve(vector<Order> st, string date);
+	int findByDateReturn(vector<Order> st, string date);
+
+	void sortById(vector<Order> &st);
+	void sortByName(vector<Order> &st);
+	void sortByBrand(vector<Order> &st);
+	void sortByCost(vector<Order> &st);
 }

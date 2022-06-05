@@ -27,7 +27,7 @@ void add_new_order(vector<Order>& orders, int& lastId)
 
 void change_order(vector<Order>& orders, int id)
 {
-	int index = orderModule::findOrder(orders, id);
+	int index = orderModule::findById(orders, id);
 	if (index == -1)
 	{
 		cout << "Order not found" << endl;
@@ -105,7 +105,7 @@ void change_order(vector<Order>& orders, int id)
 
 void delete_order(vector<Order>& orders, int id)
 {
-	int index = orderModule::findOrder(orders, id);
+	int index = orderModule::findById(orders, id);
 	if (index == -1)
 	{
 		cout << "User not found" << endl;
@@ -115,17 +115,3 @@ void delete_order(vector<Order>& orders, int id)
 	orders.erase(orders.begin()+index);
 }
 
-void individual_admin_order(vector<Order> orders)
-{
-
-}
-
-void search_admin_order(vector<Order> orders)
-{
-
-}
-
-void sort_admin_order(vector<Order> orders)
-{
-
-}
