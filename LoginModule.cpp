@@ -52,7 +52,7 @@ namespace login_module
 
 	int FindUser(vector<User> st, string login)
 	{
-		for (size_t i = 0; i < st.size(); i++)
+		for (int i = 0; i < st.size(); i++)
 		{
 			if (st[i].login == login)
 			{
@@ -65,7 +65,7 @@ namespace login_module
 
 	int FindUser(vector<User> st, int id)
 	{
-		for (size_t i = 0; i < st.size(); i++)
+		for (int i = 0; i < st.size(); i++)
 		{
 			if (st[i].id == id)
 			{

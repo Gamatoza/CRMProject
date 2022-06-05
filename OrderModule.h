@@ -61,8 +61,9 @@ namespace order_module
 	vector<Order> Individual(vector<Order> orders, int clientId);
 	void Overdue(vector<Order> orders);
 	void Waiting(vector<Order> orders);
-	void TotalIncome(vector<Order> orders);
+	void TotalIncome(vector<Order> orders, Date x, Date y);
 
+	//TODO:: FIND ALL
 	int FindById(vector<Order> st, int id);
 	int FindByName(vector<Order> st, string name);
 	int FindByBrand(vector<Order> st, string brand);

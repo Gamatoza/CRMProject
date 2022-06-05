@@ -89,7 +89,7 @@ namespace order_module
 #pragma region Find
 	int FindById(vector<Order> st, int id)
 	{
-		for (size_t i = 0; i < st.size(); i++)
+		for (int i = 0; i < st.size(); i++)
 		{
 			if (st[i].id == id)
 			{
@@ -107,7 +107,7 @@ namespace order_module
 
 	int FindByName(vector<Order> st, string name)
 	{
-		for (size_t i = 0; i < st.size(); i++)
+		for (int i = 0; i < st.size(); i++)
 		{
 			if (contains(st[i].name, name))
 			{
@@ -120,7 +120,7 @@ namespace order_module
 
 	int FindByBrand(vector<Order> st, string brand)
 	{
-		for (size_t i = 0; i < st.size(); i++)
+		for (int i = 0; i < st.size(); i++)
 		{
 			if (contains(st[i].brand, brand))
 			{
@@ -133,7 +133,7 @@ namespace order_module
 
 	int FindByDateRecieve(vector<Order> st, Date date)
 	{
-		for (size_t i = 0; i < st.size(); i++)
+		for (int i = 0; i < st.size(); i++)
 		{
 			if (st[i].date_recieve == date)
 			{
@@ -146,7 +146,7 @@ namespace order_module
 
 	int FindByDateReturn(vector<Order> st, Date date)
 	{
-		for (size_t i = 0; i < st.size(); i++)
+		for (int i = 0; i < st.size(); i++)
 		{
 			if (st[i].date_return == date)
 			{
@@ -239,7 +239,7 @@ namespace order_module
 		double summary = 0;
 		for (auto order : orders)
 		{
-			if (order.date_return > x && order.date_return < y)
+			if (order.date_return > x && order.date_return < y && order.status == 1)
 			{
 				DisplayOne(order);
 				summary += order.cost;
