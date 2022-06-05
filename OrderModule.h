@@ -3,40 +3,69 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <algorithm>  
 #include "LoginModule.h"
 using namespace std;
 
+struct Date
+{
+	int day;
+	int month;
+	int year;
+
+	void fill(istream& in) {
+		in >> day;
+		in >> month;
+		in >> year;
+	}
+
+	void display()
+	{
+		cout << day << '.' << month << '.' << year;
+	}
+
+	string to_string()
+	{
+		return std::to_string(day) + "." + std::to_string(month) + "." + std::to_string(year);
+	}
+
+	friend bool operator==(const Date &lhs, const Date &rhs);
+	friend bool operator!=(const Date &lhs, const Date &rhs);
+
+};
 
 struct Order
 {
-	int ID;
-	int ClientID;
-	string Name;
-	string Brand;
-	double Cost;
-	string DateRecieve;
-	string DateReturn;
-	bool Status;
+	int id;
+	int client_id;
+	string name;
+	string brand;
+	double cost;
+	Date date_recieve;
+	Date date_return;
+	bool status;
 };
 
-namespace orderModule
+namespace order_module
 {
-	void loadFromFile(vector<Order> &st, int& lastID);
-	void saveToFile(vector<Order> st, int lastID);
-	void displayAll(vector<Order> st);
-	void displayOne(Order st);
+	void LoadFromFile(vector<Order> &st, int& lastId);
+	void SaveToFile(vector<Order> st, int lastId);
+	void DisplayAll(vector<Order> st);
+	void DisplayOne(Order st);
 
-	void individual(vector<Order> orders, int clientId);
-	void uncomplited(vector<Order> orders);
+	void Individual(vector<Order> orders, int clientId);
+	void Uncomplited(vector<Order> orders);
+	void Waiting(vector<Order> orders);
+	void TotalIncome(vector<Order> orders);
 	
-	int findById(vector<Order> st, int id);
-	int findByName(vector<Order> st, string name);
-	int findByBrand(vector<Order> st, string brand);
-	int findByDateRecieve(vector<Order> st, string date);
-	int findByDateReturn(vector<Order> st, string date);
+	int FindById(vector<Order> st, int id);
+	int FindByName(vector<Order> st, string name);
+	int FindByBrand(vector<Order> st, string brand);
+	int FindByDateRecieve(vector<Order> st, Date date);
+	int FindByDateReturn(vector<Order> st, Date date);
 
-	void sortById(vector<Order> &st);
-	void sortByName(vector<Order> &st);
-	void sortByBrand(vector<Order> &st);
-	void sortByCost(vector<Order> &st);
+	void SortById(vector<Order> &st);
+	void SortByName(vector<Order> &st);
+	void SortByBrand(vector<Order> &st);
+	void SortByCost(vector<Order> &st);
 }

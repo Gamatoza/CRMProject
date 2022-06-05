@@ -5,19 +5,19 @@
 int main() {
 	vector<User> users;
 	int lastUserID, lastOrderID;
-	loginModule::loadFromFile(users, lastUserID);
+	login_module::LoadFromFile(users, lastUserID);
 	User currentUser;
-	if (loginModule::login(users, currentUser))
+	if (login_module::Login(users, currentUser))
 	{
 		int choose;
 		vector<Order> orders;
 		cout << "Initialize orders..." << endl;
-		orderModule::loadFromFile(orders,lastOrderID);
-		if (currentUser.RoleType == Role::Client)
+		order_module::LoadFromFile(orders,lastOrderID);
+		if (currentUser.role_type == ROLE::Client)
 		{
 			cout << "Client work!" << endl;
 		}
-		else if (currentUser.RoleType == Role::Administrator)
+		else if (currentUser.role_type == ROLE::Administrator)
 		{
 			int id;
 			while (true)
@@ -34,28 +34,28 @@ int main() {
 						cin >> choose;
 						if (choose == 1)
 						{
-							loginModule::displayAll(users);
+							login_module::DisplayAll(users);
 							system("pause");
 						}
 						else if (choose == 2)
 						{
-							add_new_user(users, lastUserID);
+							AddNewUser(users, lastUserID);
 						}
 						else if (choose == 3)
 						{
 							cout << "Id user to change: ";
 							cin >> id;
-							change_user(users, id);
+							ChangeUser(users, id);
 						}
 						else if (choose == 4)
 						{
 							cout << "Id user to delete: ";
 							cin >> id;
-							delete_user(users, id);
+							DeleteUser(users, id);
 						}
 						else if (choose == 5)
 						{
-							loginModule::saveToFile(users, lastUserID);
+							login_module::SaveToFile(users, lastUserID);
 							break;
 						}
 					}
@@ -74,28 +74,28 @@ int main() {
 							cin >> choose;
 							if (choose == 1)
 							{
-								orderModule::displayAll(orders);
+								order_module::DisplayAll(orders);
 								system("pause");
 							}
 							else if (choose == 2)
 							{
-								add_new_order(orders, lastOrderID);
+								AddNewOrder(orders, lastOrderID);
 							}
 							else if (choose == 3)
 							{
 								cout << "Id user to change: ";
 								cin >> id;
-								change_order(orders, id);
+								ChangeOrder(orders, id);
 							}
 							else if (choose == 4)
 							{
 								cout << "Id user to delete: ";
 								cin >> id;
-								delete_order(orders, id);
+								DeleteOrder(orders, id);
 							}
 							else if (choose == 5)
 							{
-								orderModule::saveToFile(orders, lastOrderID);
+								order_module::SaveToFile(orders, lastOrderID);
 								break;
 							}
 
@@ -111,7 +111,7 @@ int main() {
 					}
 					else if (choose == 3)
 					{
-						orderModule::saveToFile(orders, lastOrderID);
+						order_module::SaveToFile(orders, lastOrderID);
 						break;
 					}
 				}

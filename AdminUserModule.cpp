@@ -1,36 +1,36 @@
 #include "AdminModule.h"
 
-void add_new_user(vector<User>& users, int& lastId)
+void AddNewUser(vector<User>& users, int& lastId)
 {
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	User buf;
-	buf.ID = ++lastId;
+	buf.id = ++lastId;
 	cout << "Login: ";
-	getline(cin, buf.Login);
+	getline(cin, buf.login);
 	cout << "Password: ";
-	getline(cin, buf.Password);
+	getline(cin, buf.password);
 	cout << "FIO: ";
-	getline(cin, buf.FIO);
+	getline(cin, buf.fio);
 	cout << "Number: ";
-	getline(cin, buf.Number);
+	getline(cin, buf.number);
 	cout << "Role (0:Client; 1:Administrator): ";
 	int _role;
 	cin >> _role;
-	buf.RoleType = (Role)_role;
+	buf.role_type = (ROLE)_role;
 	users.push_back(buf);
 }
 
-void change_user(vector<User>& users, int id)
+void ChangeUser(vector<User>& users, int id)
 {
-	int index = loginModule::findUser(users, id);
+	int index = login_module::FindUser(users, id);
 	if (index == -1)
 	{
 		cout << "User not found" << endl;
 		system("pause");
 		return;
 	}
-	loginModule::displayOne(users[index]);
+	login_module::DisplayOne(users[index]);
 	cout << "What do you need to change\n1)Login\n2)Password\n3)FIO\n4)Number\n5)All\n6)Back\nChoose: ";
 	int choose;
 	cin >> choose;
@@ -41,37 +41,37 @@ void change_user(vector<User>& users, int id)
 	{
 		cout << "Login: ";
 		getline(cin, data);
-		users[index].Login = data;
+		users[index].login = data;
 	}
 	else if (choose == 2)
 	{
 		cout << "Password: ";
 		getline(cin, data);
-		users[index].Password = data;
+		users[index].password = data;
 	}
 	else if (choose == 3)
 	{
 		cout << "FIO: ";
 		getline(cin, data);
-		users[index].FIO = data;
+		users[index].fio = data;
 	}
 	else if (choose == 4)
 	{
 		cout << "Number: ";
 		getline(cin, data);
-		users[index].Number = data;
+		users[index].number = data;
 	}
 	else if (choose == 5)
 	{
 		User* buf = &users[index];
 		cout << "Login: ";
-		getline(cin, buf->Login);
+		getline(cin, buf->login);
 		cout << "Password: ";
-		getline(cin, buf->Password);
+		getline(cin, buf->password);
 		cout << "FIO: ";
-		getline(cin, buf->FIO);
+		getline(cin, buf->fio);
 		cout << "Number: ";
-		getline(cin, buf->Number);
+		getline(cin, buf->number);
 	}
 	else if (choose == 6)
 	{
@@ -79,9 +79,9 @@ void change_user(vector<User>& users, int id)
 	}
 }
 
-void delete_user(vector<User>& users, int id)
+void DeleteUser(vector<User>& users, int id)
 {
-	int index = loginModule::findUser(users, id);
+	int index = login_module::FindUser(users, id);
 	if (index == -1)
 	{
 		cout << "User not found" << endl;

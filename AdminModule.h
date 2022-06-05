@@ -9,16 +9,16 @@ using namespace std;
 
 #pragma region redactor
 
-void add_new_user(vector<User>& users, int& lastId);
-void change_user(vector<User>& users, int id);
-void delete_user(vector<User>& users, int id); //TODO: get back
+void AddNewUser(vector<User>& users, int& lastId);
+void ChangeUser(vector<User>& users, int id);
+void DeleteUser(vector<User>& users, int id); //TODO: get back
 
 #pragma endregion
 
 #pragma region orders
 
-void add_new_order(vector<Order>& orders, int& lastId);
-void change_order(vector<Order>& orders, int id);
-void delete_order(vector<Order>& orders, int id);
+void AddNewOrder(vector<Order>& orders, int& lastId);
+void ChangeOrder(vector<Order>& orders, int id);
+void DeleteOrder(vector<Order>& orders, int id);
 
 #pragma endregion

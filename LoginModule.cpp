@@ -1,7 +1,7 @@
 #include "LoginModule.h"
-namespace loginModule
+namespace login_module
 {
-	void loadFromFile(vector<User> &st, int& lastID) 
+	void LoadFromFile(vector<User> &st, int& lastID) 
 	{
 		ifstream in;
 		int total;
@@ -11,50 +11,50 @@ namespace loginModule
 		while (!in.eof() && total-- > 0)
 		{
 			User buf;
-			in >> buf.ID;
-			in >> buf.Login;
-			in >> buf.Password;
-			in >> buf.FIO;
-			in >> buf.Number;
+			in >> buf.id;
+			in >> buf.login;
+			in >> buf.password;
+			in >> buf.fio;
+			in >> buf.number;
 			int _role;
 			in >> _role;
-			buf.RoleType = (Role)_role;
+			buf.role_type = (ROLE)_role;
 			st.push_back(buf);
 		}
 		in.close();
 	}
 
-	void saveToFile(const vector<User> st, int lastID)
+	void SaveToFile(const vector<User> st, int lastID)
 	{
 		ofstream out;
 		out.open("users.txt");
 		out << st.size() << endl;
-		out << (lastID == 0 ? st[st.size()].ID : lastID) << endl;
+		out << (lastID == 0 ? st[st.size()].id : lastID) << endl;
 		for(auto x: st)
 		{
-			out << x.ID << endl << x.Login << endl << x.Password << endl << x.FIO << endl << x.Number << endl << x.RoleType << endl;
+			out << x.id << endl << x.login << endl << x.password << endl << x.fio << endl << x.number << endl << x.role_type << endl;
 		}
 		out.close();
 	}
 
-	void displayAll(const vector<User> st)
+	void DisplayAll(const vector<User> st)
 	{
 		for (auto user : st)
 		{
-			displayOne(user);
+			DisplayOne(user);
 		}
 	}
 
-	void displayOne(User user)
+	void DisplayOne(User user)
 	{
-		cout << user.ID << " " << user.Login << " " << user.Password << " " << user.FIO << " " << user.Number << " " << (user.RoleType == 0 ? "Client" : "Admin") << endl;
+		cout << user.id << " " << user.login << " " << user.password << " " << user.fio << " " << user.number << " " << (user.role_type == 0 ? "Client" : "Admin") << endl;
 	}
 
-	int findUser(vector<User> st, string login) 
+	int FindUser(vector<User> st, string login) 
 	{
 		for (size_t i = 0; i < st.size(); i++)
 		{
-			if (st[i].Login == login)
+			if (st[i].login == login)
 			{
 				return i;
 			}
@@ -63,11 +63,11 @@ namespace loginModule
 		return -1;
 	}
 	
-	int findUser(vector<User> st, int id) 
+	int FindUser(vector<User> st, int id) 
 	{
 		for (size_t i = 0; i < st.size(); i++)
 		{
-			if (st[i].ID == id)
+			if (st[i].id == id)
 			{
 				return i;
 			}
@@ -76,12 +76,12 @@ namespace loginModule
 		return -1;
 	}
 
-	bool login(vector<User> st, User& outUser)
+	bool Login(vector<User> st, User& outUser)
 	{
 		string login, password;
 		cout << "Login: ";
 		getline(cin, login);
-		int index = loginModule::findUser(st, login);
+		int index = login_module::FindUser(st, login);
 		if (index == -1)
 		{
 			cout << "Wrong login" << endl;
@@ -89,7 +89,7 @@ namespace loginModule
 		}
 		cout << "Password: ";
 		getline(cin, password);
-		if (st[index].Password == password)
+		if (st[index].password == password)
 		{
 			cout << "Login succesfull" << endl;
 			outUser = st[index];

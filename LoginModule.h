@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std;
 
-enum Role
+enum ROLE
 {
 	Client,
 	Administrator
@@ -14,26 +14,22 @@ enum Role
 struct User
 {
 public:
-	int ID;
-	string Login;
-	string Password;
-	string FIO;
-	string Number;
-	Role RoleType;
-	User() {}
-
-	User(int id, string login, string password, string fio, string number, Role role)
-		:ID(id), Login(login), Password(password), FIO(fio), Number(number), RoleType(role) {}
+	int id;
+	string login;
+	string password;
+	string fio;
+	string number;
+	ROLE role_type;
 };
 
-namespace loginModule
+namespace login_module
 {
 	//TODO: check file
-	void loadFromFile(vector<User> &st, int& lastID);
-	void saveToFile(vector<User> st, int lastID);
-	void displayAll(vector<User> st);
-	void displayOne(User user);
-	int findUser(vector<User> st, string login);
-	int findUser(vector<User> st, int id);
-	bool login(vector<User> st, User& outUser);
+	void LoadFromFile(vector<User> &st, int& lastID);
+	void SaveToFile(vector<User> st, int lastID);
+	void DisplayAll(vector<User> st);
+	void DisplayOne(User user);
+	int FindUser(vector<User> st, string login);
+	int FindUser(vector<User> st, int id);
+	bool Login(vector<User> st, User& outUser);
 }
