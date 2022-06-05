@@ -2,16 +2,18 @@
 
 void add_new_user(vector<User>& users, int& lastId)
 {
+	cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	User buf;
 	buf.ID = ++lastId;
 	cout << "Login: ";
-	cin >> buf.Login;
+	getline(cin, buf.Login);
 	cout << "Password: ";
-	cin >> buf.Password;
+	getline(cin, buf.Password);
 	cout << "FIO: ";
-	cin >> buf.FIO;
+	getline(cin, buf.FIO);
 	cout << "Number: ";
-	cin >> buf.Number;
+	getline(cin, buf.Number);
 	cout << "Role (0:Client; 1:Administrator): ";
 	int _role;
 	cin >> _role;
@@ -61,7 +63,7 @@ void change_user(vector<User>& users, int id)
 	}
 	else if (choose == 5)
 	{
-		User * buf = &users[index];
+		User* buf = &users[index];
 		cout << "Login: ";
 		getline(cin, buf->Login);
 		cout << "Password: ";
@@ -86,5 +88,5 @@ void delete_user(vector<User>& users, int id)
 		system("pause");
 		return;
 	}
-	users.erase(users.begin()+index);
+	users.erase(users.begin() + index);
 }

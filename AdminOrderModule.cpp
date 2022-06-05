@@ -6,12 +6,16 @@ void add_new_order(vector<Order>& orders, int& lastId)
 	buf.ID = ++lastId;
 	cout << "ClientID: ";
 	cin >> buf.ClientID; //TODO: Check is has one
+	cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	cout << "Name: ";
 	getline(cin, buf.Name);
 	cout << "Brand: ";
 	getline(cin, buf.Brand);
 	cout << "Cost: ";
 	cin >> buf.Cost;
+	cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	cout << "DateRecieve: ";
 	getline(cin, buf.DateRecieve);
 	cout << "DateReturn: ";
@@ -84,6 +88,8 @@ void change_order(vector<Order>& orders, int id)
 		getline(cin, buf->Brand);
 		cout << "Cost: ";
 		cin >> buf->Cost;
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << "DateRecieve: ";
 		getline(cin, buf->DateRecieve);
 		cout << "DateReturn: ";
