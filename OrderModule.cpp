@@ -1,10 +1,28 @@
 #include "OrderModule.h"
 
-bool operator==(const Date &lhs, const Date &rhs) {
+bool operator==(const Date& lhs, const Date& rhs) {
 	return lhs.day == rhs.day && lhs.month == rhs.month && lhs.year == rhs.year;
 }
-bool operator!=(const Date &lhs, const Date &rhs) {
+bool operator!=(const Date& lhs, const Date& rhs) {
 	return !(lhs == rhs);
+}
+bool operator< (Date const& lhs, Date const& rhs) {
+	return lhs.year < rhs.year&& lhs.month < rhs.month&& lhs.day < rhs.day;
+}
+bool operator> (Date const& lhs, Date const& rhs) {
+	return lhs.year > rhs.year && lhs.month > rhs.month && lhs.day > rhs.day;
+}
+
+Date GetCurrentDate()
+{
+	Date date;
+	std::time_t t = std::time(0);   // get time now
+	std::tm now;
+	errno_t err = localtime_s(&now, &t);
+	date.year = (now.tm_year + 1900);
+	date.month = (now.tm_mon + 1);
+	date.day = now.tm_mday;
+	return date;
 }
 
 namespace order_module
@@ -40,11 +58,11 @@ namespace order_module
 		out << (lastID == 0 ? st[st.size()].id : lastID) << endl;
 		for (auto order : st)
 		{
-			out << order.id << endl 
-				<< order.client_id << endl 
-				<< order.name << endl 
-				<< order.brand << endl 
-				<< order.cost << endl 
+			out << order.id << endl
+				<< order.client_id << endl
+				<< order.name << endl
+				<< order.brand << endl
+				<< order.cost << endl
 				<< order.date_recieve.day << " " << order.date_recieve.month << " " << order.date_recieve.year << endl
 				<< order.date_return.day << " " << order.date_return.month << " " << order.date_return.year << endl
 				<< order.status << endl;
@@ -179,20 +197,54 @@ namespace order_module
 	}
 #pragma endregion
 
-	void Individual(vector<Order> orders, int clientId)
+	vector<Order> Individual(vector<Order> orders, int clientId)
 	{
-
+		vector<Order> user_orders;
+		for (auto order : orders)
+		{
+			if (order.client_id == clientId)
+			{
+				user_orders.push_back(order);
+			}
+		}
+		return user_orders;
 	}
-	void Uncomplited(vector<Order> orders)
+
+	void Overdue(vector<Order> orders)
 	{
-
+		Date now = GetCurrentDate();
+		for (auto order : orders)
+		{
+			if (!order.status && order.date_recieve > now)
+			{
+				DisplayOne(order);
+			}
+		}
 	}
+
 	void Waiting(vector<Order> orders)
 	{
-
+		Date now = GetCurrentDate();
+		for (auto order : orders)
+		{
+			if (!order.status && order.date_recieve < now)
+			{
+				DisplayOne(order);
+			}
+		}
 	}
-	void TotalIncome(vector<Order> orders)
-	{
 
+	void TotalIncome(vector<Order> orders, Date x, Date y)
+	{
+		double summary = 0;
+		for (auto order : orders)
+		{
+			if (order.date_return > x && order.date_return < y)
+			{
+				DisplayOne(order);
+				summary += order.cost;
+			}
+		}
+		cout << "Summary: " << summary << endl;
 	}
 }

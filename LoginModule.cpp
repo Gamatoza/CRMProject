@@ -1,7 +1,7 @@
 #include "LoginModule.h"
 namespace login_module
 {
-	void LoadFromFile(vector<User> &st, int& lastID) 
+	void LoadFromFile(vector<User>& st, int& lastID)
 	{
 		ifstream in;
 		int total;
@@ -30,7 +30,7 @@ namespace login_module
 		out.open("users.txt");
 		out << st.size() << endl;
 		out << (lastID == 0 ? st[st.size()].id : lastID) << endl;
-		for(auto x: st)
+		for (auto x : st)
 		{
 			out << x.id << endl << x.login << endl << x.password << endl << x.fio << endl << x.number << endl << x.role_type << endl;
 		}
@@ -50,7 +50,7 @@ namespace login_module
 		cout << user.id << " " << user.login << " " << user.password << " " << user.fio << " " << user.number << " " << (user.role_type == 0 ? "Client" : "Admin") << endl;
 	}
 
-	int FindUser(vector<User> st, string login) 
+	int FindUser(vector<User> st, string login)
 	{
 		for (size_t i = 0; i < st.size(); i++)
 		{
@@ -62,8 +62,8 @@ namespace login_module
 
 		return -1;
 	}
-	
-	int FindUser(vector<User> st, int id) 
+
+	int FindUser(vector<User> st, int id)
 	{
 		for (size_t i = 0; i < st.size(); i++)
 		{

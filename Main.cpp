@@ -12,10 +12,14 @@ int main() {
 		int choose;
 		vector<Order> orders;
 		cout << "Initialize orders..." << endl;
-		order_module::LoadFromFile(orders,lastOrderID);
+		order_module::LoadFromFile(orders, lastOrderID);
 		if (currentUser.role_type == ROLE::Client)
 		{
-			cout << "Client work!" << endl;
+			/*
+			просмотр всех данных;
+			поиск данных (как минимум по трем различным параметрам);
+			сортировка (как минимум по трем различным параметрам).
+			*/
 		}
 		else if (currentUser.role_type == ROLE::Administrator)
 		{
@@ -98,16 +102,16 @@ int main() {
 								order_module::SaveToFile(orders, lastOrderID);
 								break;
 							}
-
 						}
 					}
 					else if (choose == 2)
 					{
 						cout << "Work in progress";
-						/*while (true)
-						{
-
-						}*/
+						/*
+						выполнение индивидуального задания;
+						поиск данных (как минимум по трем различным параметрам);
+						сортировка (как минимум по трем различным параметрам).
+						*/
 					}
 					else if (choose == 3)
 					{

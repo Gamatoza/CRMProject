@@ -72,7 +72,7 @@ void ChangeOrder(vector<Order>& orders, int id)
 	}
 	else if (choose == 7)
 	{
-		Order * buf = &orders[index];
+		Order* buf = &orders[index];
 		cout << "Name: ";
 		getline(cin, buf->name);
 		cout << "Brand: ";
@@ -103,6 +103,5 @@ void DeleteOrder(vector<Order>& orders, int id)
 		system("pause");
 		return;
 	}
-	orders.erase(orders.begin()+index);
+	orders.erase(orders.begin() + index);
 }
-
