@@ -11,7 +11,7 @@ using namespace std;
 
 void AddNewUser(vector<User>& users, int& lastId);
 void ChangeUser(vector<User>& users, int id);
-void DeleteUser(vector<User>& users, int id); //TODO: get back
+void DeleteUser(vector<User>& users, int id);
 
 #pragma endregion
 

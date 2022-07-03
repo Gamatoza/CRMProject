@@ -32,12 +32,12 @@ namespace order_module
 		ifstream in;
 		int total;
 		in.open("orders.txt");
-		if(!in)
+		if (!in)
 		{
-			in.open("orders.txt",std::fstream::binary | std::fstream::trunc | std::fstream::out);    
+			in.open("orders.txt", std::fstream::binary | std::fstream::trunc | std::fstream::out);
 			in.close();
 			// re-open with original flags
-			in.open("orders.txt",std::fstream::binary | std::fstream::in | std::fstream::out);
+			in.open("orders.txt", std::fstream::binary | std::fstream::in | std::fstream::out);
 		}
 		else
 		{
@@ -65,16 +65,15 @@ namespace order_module
 	{
 		ofstream out;
 		out.open("orders.txt");
-		if(!out)
+		if (!out)
 		{
-			out.open("orders.txt",std::fstream::binary | std::fstream::trunc | std::fstream::out);    
+			out.open("orders.txt", std::fstream::binary | std::fstream::trunc | std::fstream::out);
 			out.close();
 			// re-open with original flags
-			out.open("orders.txt",std::fstream::binary | std::fstream::in | std::fstream::out);
+			out.open("orders.txt", std::fstream::binary | std::fstream::in | std::fstream::out);
 		}
 		else
 		{
-
 			out << st.size() << endl;
 			out << (lastID == 0 ? st[st.size()].id : lastID) << endl;
 			for (auto order : st)

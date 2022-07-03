@@ -1,7 +1,6 @@
 #include "AdminModule.h"
 
-void AddNewUser(vector<User>& users, int& lastId)
-{
+void AddNewUser(vector<User>& users, int& lastId) {
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	User buf;
@@ -21,8 +20,7 @@ void AddNewUser(vector<User>& users, int& lastId)
 	users.push_back(buf);
 }
 
-void ChangeUser(vector<User>& users, int id)
-{
+void ChangeUser(vector<User>& users, int id) {
 	int index = login_module::FindUser(users, id);
 	if (index == -1)
 	{

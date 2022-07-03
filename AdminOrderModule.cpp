@@ -1,7 +1,6 @@
 #include "OrderModule.h"
 
-void AddNewOrder(vector<Order>& orders, int& lastId)
-{
+void AddNewOrder(vector<Order>& orders, int& lastId) {
 	Order buf;
 	buf.id = ++lastId;
 	cout << "ClientID: ";
@@ -25,8 +24,7 @@ void AddNewOrder(vector<Order>& orders, int& lastId)
 	orders.push_back(buf);
 }
 
-void ChangeOrder(vector<Order>& orders, int id)
-{
+void ChangeOrder(vector<Order>& orders, int id) {
 	int index = order_module::FindById(orders, id);
 	if (index == -1)
 	{
@@ -94,8 +92,7 @@ void ChangeOrder(vector<Order>& orders, int id)
 	}
 }
 
-void DeleteOrder(vector<Order>& orders, int id)
-{
+void DeleteOrder(vector<Order>& orders, int id) {
 	int index = order_module::FindById(orders, id);
 	if (index == -1)
 	{

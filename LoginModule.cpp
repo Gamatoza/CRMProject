@@ -6,12 +6,12 @@ namespace login_module
 		ifstream in;
 		int total;
 		in.open("users.txt");
-		if(!in)
+		if (!in)
 		{
-			in.open("users.txt",std::fstream::binary | std::fstream::trunc | std::fstream::out);    
+			in.open("users.txt", std::fstream::binary | std::fstream::trunc | std::fstream::out);
 			in.close();
 			// re-open with original flags
-			in.open("users.txt",std::fstream::binary | std::fstream::in | std::fstream::out);
+			in.open("users.txt", std::fstream::binary | std::fstream::in | std::fstream::out);
 		}
 		else
 		{
@@ -38,12 +38,12 @@ namespace login_module
 	{
 		ofstream out;
 		out.open("users.txt");
-		if(!out)
+		if (!out)
 		{
-			out.open("users.txt",std::fstream::binary | std::fstream::trunc | std::fstream::out);    
+			out.open("users.txt", std::fstream::binary | std::fstream::trunc | std::fstream::out);
 			out.close();
 			// re-open with original flags
-			out.open("users.txt",std::fstream::binary | std::fstream::in | std::fstream::out);
+			out.open("users.txt", std::fstream::binary | std::fstream::in | std::fstream::out);
 		}
 		else
 		{
